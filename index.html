@@ -1,20 +1,21 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <!-- SEO Meta Tags -->
-<meta name="description" content="[Your choir description]">
-<meta name="keywords" content="choir, vocal, music, [your city], singing">
-<meta name="author" content="Your Choir Name">
+    <meta name="description" content="[Your choir description]">
+    <meta name="keywords" content="choir, vocal, music, [your city], singing">
+    <meta name="author" content="Your Choir Name">
 
-<!-- Google Analytics -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=GA_MEASUREMENT_ID"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-  gtag('config', 'GA_MEASUREMENT_ID');
-//   heade
-</script>
+    <!-- Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=GA_MEASUREMENT_ID"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
+        gtag('config', 'GA_MEASUREMENT_ID');
+        //   heade
+    </script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Harmony Choir | Home</title>
@@ -24,32 +25,33 @@
 
 <script src="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.9/index.global.min.js"></script>
 <script>
-  document.addEventListener('DOMContentLoaded', function() {
-    const calendarEl = document.getElementById('event-calendar');
-    const calendar = new FullCalendar.Calendar(calendarEl, {
-      initialView: 'dayGridMonth',
-      headerToolbar: {
-        left: 'prev,next today',
-        center: 'title',
-        right: 'dayGridMonth,listWeek'
-      },
-      events: [
-        {
-          title: 'Winter Concert',
-          start: '2024-12-15',
-          end: '2024-12-15',
-          url: '#'
-        },
-        {
-          title: 'Spring Recital',
-          start: '2025-04-20',
-          end: '2025-04-21'
-        }
-      ]
+    document.addEventListener('DOMContentLoaded', function () {
+        const calendarEl = document.getElementById('event-calendar');
+        const calendar = new FullCalendar.Calendar(calendarEl, {
+            initialView: 'dayGridMonth',
+            headerToolbar: {
+                left: 'prev,next today',
+                center: 'title',
+                right: 'dayGridMonth,listWeek'
+            },
+            events: [
+                {
+                    title: 'Winter Concert',
+                    start: '2024-12-15',
+                    end: '2024-12-15',
+                    url: '#'
+                },
+                {
+                    title: 'Spring Recital',
+                    start: '2025-04-20',
+                    end: '2025-04-21'
+                }
+            ]
+        });
+        calendar.render();
     });
-    calendar.render();
-  });
 </script>
+
 <body>
     <!-- Navigation -->
     <nav class="navbar">
@@ -82,7 +84,8 @@
     <section id="about" class="section">
         <div class="container">
             <h2>Our Mission</h2>
-            <p>We strive to bring musical excellence to our community through passionate performances and educational outreach.</p>
+            <p>We strive to bring musical excellence to our community through passionate performances and educational
+                outreach.</p>
             <div class="mission-cards">
                 <div class="card">
                     <i class="fas fa-music"></i>
@@ -110,19 +113,22 @@
             <div class="video-container">
                 <div class="video-item">
                     <div class="video-wrapper">
-                        <iframe src="https://www.youtube.com/embed/toXCy1ZIlrk?si=euy736l2m9AOR1XW" frameborder="0" allowfullscreen></iframe>
+                        <iframe src="https://www.youtube.com/embed/toXCy1ZIlrk?si=euy736l2m9AOR1XW" frameborder="0"
+                            allowfullscreen></iframe>
                     </div>
                     <h3>Ni inde?</h3>
                 </div>
                 <div class="video-item">
                     <div class="video-wrapper">
-                        <iframe src="https://www.youtube.com/embed/zOzwKqDD4RI?si=5zEWfhBaeg-7hRCE" frameborder="0" allowfullscreen></iframe>
+                        <iframe src="https://www.youtube.com/embed/zOzwKqDD4RI?si=5zEWfhBaeg-7hRCE" frameborder="0"
+                            allowfullscreen></iframe>
                     </div>
                     <h3>ASSA UR Rukara Campus</h3>
                 </div>
                 <div class="video-item">
                     <div class="video-wrapper">
-                        <iframe src="https://www.youtube.com/embed/YOUR_VIDEO_ID" frameborder="0" allowfullscreen></iframe>
+                        <iframe src="https://www.youtube.com/embed/YOUR_VIDEO_ID" frameborder="0"
+                            allowfullscreen></iframe>
                     </div>
                     <h3>Spring Festival</h3>
                 </div>
@@ -130,12 +136,12 @@
         </div>
     </section>
     <!-- ===== Events Calendar Section ===== -->
-<section class="events">
-    <div class="container">
-      <h2>Upcoming Events</h2>
-      <div id="event-calendar"></div>
-    </div>
-  </section>
+    <section class="events">
+        <div class="container">
+            <h2>Upcoming Events</h2>
+            <div id="event-calendar"></div>
+        </div>
+    </section>
 
     <!-- Footer -->
     <footer>
@@ -154,7 +160,8 @@
                     <h3>Connect With Us</h3>
                     <div class="social-icons">
                         <a href="#"><i class="fab fa-facebook"></i></a>
-                        <a href="https://www.instagram.com/elmshaven_choir?igsh=MWF0aHZvaGJtODd2bg=="><i class="fab fa-instagram"></i></a>
+                        <a href="https://www.instagram.com/elmshaven_choir?igsh=MWF0aHZvaGJtODd2bg=="><i
+                                class="fab fa-instagram"></i></a>
                         <a href="https://www.youtube.com/@elmshavenchoir"><i class="fab fa-youtube"></i></a>
                         <a href="https://x.com/elm_2020"><i class="fab fa-twitter"></i></a>
                     </div>
@@ -168,4 +175,5 @@
 
     <script src="js/main.js"></script>
 </body>
+
 </html>
