@@ -125,9 +125,11 @@ h1, h2, h3, h4 {
     background-attachment: fixed;
     display: flex;
     align-items: center;
+    /* align-items: flex-end; */
     text-align: center;
     color: #fff;
     margin-top: 70px; /* To account for fixed navbar */
+    justify-content: center;
 }
 
 .hero-content h1 {
