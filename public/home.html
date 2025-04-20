@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Elmshaven Choir | Home</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <!-- Preload critical resources -->
+    <link rel="preload" href="js/main.js" as="script">
+    <link rel="preload" href="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.9/index.global.min.js" as="script">
+    <style>
+        /* Temporary calendar styles - add to style.css later */
+        .calendar-section {
+            background: #f8f9fa;
+            padding: 60px 0;
+        }
+
+        #event-calendar {
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            margin-top: 20px;
+        }
+
+        .error-message {
+            color: #dc3545;
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        .fc-event {
+            cursor: pointer;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="container">
+            <a href="index.html" class="logo">Elmshaven Choir</a>
+            <ul class="nav-links">
+                <li><a href="index.html" class="active">Home</a></li>
+                <li><a href="about.html">About Us</a></li>
+                <li><a href="gallery.html">Gallery</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+            <div class="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <header class="hero">
+        <div class="hero-content">
+            <h1>Welcome to Elmshaven Choir</h1>
+            <p>Where voices unite to create beautiful music</p>
+            <a href="#about" class="btn">Learn More</a>
+        </div>
+    </header>
+
+    <!-- About Section -->
+    <section id="about" class="section">
+        <div class="container">
+            <h2>Our Mission</h2>
+            <p>We strive to bring musical excellence to our community through passionate performances and educational
+                outreach.</p>
+            <div class="mission-cards">
+                <div class="card">
+                    <i class="fas fa-music"></i>
+                    <h3>Perform</h3>
+                    <p>Delivering outstanding choral performances throughout the year</p>
+                </div>
+                <div class="card">
+                    <i class="fas fa-users"></i>
+                    <h3>Educate</h3>
+                    <p>Teaching the next generation about the power of choral music</p>
+                </div>
+                <div class="card">
+                    <i class="fas fa-heart"></i>
+                    <h3>Inspire</h3>
+                    <p>Creating moments that touch hearts and uplift spirits</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- <video section> -->
+    <section class="video-section">
+        <div class="container">
+            <h2>Our Performances</h2>
+            <div class="video-slider-viewport">
+                <div class="video-slider-track" id="video-container">
+                    <!-- Videos injected by JS -->
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const container = document.getElementById('video-container');
+            const apiKey = 'AIzaSyByiAwj6lH6PXwiCnmpHhrM7UyHLkjh98I'; // Replace with your real API key
+            const channelId = 'UC7kSE08qxxyLaBU7pXT0MBw';
+            const maxResults = 5;
+    
+            const apiUrl = `https://www.googleapis.com/youtube/v3/search?key=${apiKey}&channelId=${channelId}&part=snippet,id&order=date&maxResults=${maxResults}`;
+    
+            fetch(apiUrl)
+                .then(res => res.json())
+                .then(data => {
+                    const videos = data.items.filter(item => item.id.kind === 'youtube#video');
+                    if (videos.length < 4) {
+                        console.error('Less than 4 videos found.');
+                        return;
+                    }
+    
+                    // Start from [1,2], so we don't duplicate the first
+                    const videoData = [...videos];
+    
+                    // Looping support: add [1,2] again at the end for smooth wrap
+                    videoData.push(videos[0], videos[1]);
+    
+                    // Render all items
+                    videoData.forEach(video => {
+                        const videoItem = document.createElement('div');
+                        videoItem.className = 'video-item';
+    
+                        videoItem.innerHTML = `
+                            <div class="video-wrapper">
+                                <iframe src="https://www.youtube.com/embed/${video.id.videoId}" allowfullscreen loading="lazy"></iframe>
+                            </div>
+                            <h3>${video.snippet.title}</h3>
+                        `;
+    
+                        container.appendChild(videoItem);
+                    });
+    
+                    // Sliding logic
+                    const totalVideos = videoData.length;
+                    const slideWidth = 50; // Since each takes 50% width
+                    let index = 0;
+    
+                    setInterval(() => {
+                        index++;
+                        container.style.transition = 'transform 0.6s ease-in-out';
+                        container.style.transform = `translateX(-${index * slideWidth}%)`;
+    
+                        // Reset seamlessly
+                        if (index >= totalVideos - 2) {
+                            setTimeout(() => {
+                                container.style.transition = 'none';
+                                container.style.transform = `translateX(0)`;
+                                index = 0;
+                            }, 700); // After transition completes
+                        }
+                    }, 4000); // Slide every 4 seconds
+                })
+                .catch(err => {
+                    console.error('YouTube API error:', err);
+                });
+        });
+    </script>
+    
+
+
+
+
+    <!-- Calendar Section -->
+    <section class="section calendar-section">
+        <div class="container">
+            <h2>Upcoming Events</h2>
+            <div id="event-calendar"></div>
+            <div id="calendar-error" class="error-message" style="display:none;">
+                <p>Couldn't load events. <a
+                        href="https://calendar.google.com/calendar/embed?src=honoreniyirema%40gmail.com&ctz=UTC"
+                        target="_blank">View our calendar here</a></p>
+            </div>
+            <!-- Fallback Embed -->
+            <div id="calendar-fallback" style="display:none;">
+                <iframe src="https://calendar.google.com/calendar/embed?src=honoreniyirema%40gmail.com&ctz=UTC"
+                    style="border:0" width="100%" height="600" frameborder="0" scrolling="no"></iframe>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="about.html">About Us</a></li>
+                        <li><a href="gallery.html">Gallery</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>Connect With Us</h3>
+                    <div class="social-icons">
+                        <a href="#"><i class="fab fa-facebook"></i></a>
+                        <a href="https://www.instagram.com/elmshaven_choir?igsh=MWF0aHZvaGJtODd2bg=="><i
+                                class="fab fa-instagram"></i></a>
+                        <a href="https://www.youtube.com/@elmshavenchoir"><i class="fab fa-youtube"></i></a>
+                        <a href="https://x.com/elm_2020"><i class="fab fa-twitter"></i></a>
+                        <a href="https://x.com/elm_2020"><i class="fab fa-spotify"></i></a>
+                        <a href="https://x.com/elm_2020"><i class="fab fa-twitter"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>&copy; <span id="current-year"></span> Elmshaven Choir. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.9/index.global.min.js"></script>
+    <script src="https://apis.google.com/js/api.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            // Set current year
+            document.getElementById('current-year').textContent = new Date().getFullYear();
+
+            // Initialize Calendar
+            const initCalendar = () => {
+                const calendarEl = document.getElementById('event-calendar');
+                if (!calendarEl) {
+                    console.error("Calendar container not found!");
+                    return null;
+                }
+
+                return new FullCalendar.Calendar(calendarEl, {
+                    initialView: 'dayGridMonth',
+                    headerToolbar: {
+                        left: 'prev,next today',
+                        center: 'title',
+                        right: 'dayGridMonth,listWeek'
+                    },
+                    eventDisplay: 'block',
+                    eventColor: '#4a6fa5',
+                    eventTextColor: '#ffffff',
+                    eventClick: function (info) {
+                        info.jsEvent.preventDefault();
+                        if (info.event.url) {
+                            window.open(info.event.url, '_blank');
+                        }
+                    }
+                });
+            };
+
+            // Show error message
+            const showCalendarError = (showFallback = true) => {
+                document.getElementById('calendar-error').style.display = 'block';
+                if (showFallback) {
+                    document.getElementById('calendar-fallback').style.display = 'block';
+                    document.getElementById('event-calendar').style.display = 'none';
+                }
+            };
+
+            // Load Google Calendar Events
+            const loadGoogleCalendarEvents = (calendar) => {
+                if (typeof gapi === 'undefined') {
+                    console.error("Google API not loaded");
+                    showCalendarError();
+                    return;
+                }
+
+                gapi.load('client', () => {
+                    gapi.client.init({
+                        apiKey: 'AIzaSyA8MuitfpgHltpRiXQrGLQ5Gewnlj-ZVCc',
+                        clientId: '1066696524327-eqej4n5m10eluqehd78fuc0ec63jgcpo.apps.googleusercontent.com',
+                        discoveryDocs: ["https://www.googleapis.com/discovery/v1/apis/calendar/v3/rest"],
+                        scope: "https://www.googleapis.com/auth/calendar.readonly"
+                    }).then(() => {
+                        gapi.client.calendar.events.list({
+                            'calendarId': 'honoreniyirema@gmail.com',
+                            'timeMin': new Date().toISOString(),
+                            'showDeleted': false,
+                            'singleEvents': true,
+                            'orderBy': 'startTime'
+                        }).then(response => {
+                            const events = response.result.items.map(event => ({
+                                title: event.summary,
+                                start: event.start.dateTime || event.start.date,
+                                end: event.end.dateTime || event.end.date,
+                                url: event.htmlLink,
+                                extendedProps: {
+                                    description: event.description || ''
+                                }
+                            }));
+                            calendar.addEventSource(events);
+                            calendar.render();
+                        }, () => showCalendarError());
+                    }, () => showCalendarError());
+                }, () => showCalendarError());
+            };
+
+            // Initialize and load events
+            try {
+                const calendar = initCalendar();
+                if (calendar) {
+                    loadGoogleCalendarEvents(calendar);
+                } else {
+                    showCalendarError();
+                }
+            } catch (e) {
+                console.error("Calendar initialization failed:", e);
+                showCalendarError();
+            }
+        });
+    </script>
+
+
+
+
+
+    <script src="js/main.js" defer></script>
+</body>
+
+</html>
