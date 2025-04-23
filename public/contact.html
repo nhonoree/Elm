@@ -16,8 +16,14 @@
     <!-- Navigation (Same as other pages) -->
     <nav class="navbar">
         <div class="container">
-            <a href="home.html" class="logo">Elmshaven Choir</a>
-            <ul class="nav-links">
+            <a href="home.html" class="logo">
+                <img src="images/logo support.jpg" alt="Elmshaven Choir Logo">
+            </a>
+            <!-- Menu Toggle Button (Hamburger) -->
+ <button class="menu-toggle" onclick="toggleMenu()">
+   ☰
+ </button>
+            <ul class="nav-links" id="navLinks">
                 <li><a href="home.html">Home</a></li>
                 <li><a href="about.html">About Us</a></li>
                 <li><a href="gallery.html">Gallery</a></li>
@@ -191,6 +197,32 @@
             this.reset();
         });
     </script>
+
+
+    <!-- This is js for mune for mobile phone -->
+    <script>
+        function toggleMenu() {
+            const menuToggle = document.querySelector('.menu-toggle');
+            const navLinks = document.getElementById('navLinks');
+
+            // Toggle active classes
+            menuToggle.classList.toggle('active');
+            navLinks.classList.toggle('active');
+
+            // Toggle body scroll when menu is open
+            document.body.style.overflow = navLinks.classList.contains('active') ? 'hidden' : '';
+
+            // Close menu when clicking on a link (event delegation)
+            navLinks.addEventListener('click', function (e) {
+                if (e.target.tagName === 'A') {
+                    menuToggle.classList.remove('active');
+                    navLinks.classList.remove('active');
+                    document.body.style.overflow = '';
+                }
+            });
+        }
+    </script>
+
 </body>
 
 </html>

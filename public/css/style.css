@@ -16,6 +16,7 @@
 }
 
 body {
+    position: relative;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     line-height: 1.6;
     color: var(--text-color);
@@ -80,10 +81,37 @@ h4 {
     align-items: center;
 }
 
+/* Replace text logo with image logo */
 .logo {
-    font-size: 24px;
-    font-weight: 700;
-    color: var(--primary-color);
+    display: inline-block;
+    height: 50px; /* Adjust based on your image proportions */
+    width: auto; /* Maintain aspect ratio */
+    position: relative;
+    top: 3px; /* Fine-tune vertical alignment */
+}
+
+.logo img {
+    height: 100%;
+    width: auto;
+    object-fit: contain;
+}
+
+/* Mobile adjustments for logo */
+@media (max-width: 768px) {
+    .logo {
+        height: 35px; /* Slightly smaller on mobile */
+    }
+}
+
+@media (max-width: 480px) {
+    .logo {
+        height: 30px; /* Even smaller on very small screens */
+    }
+}.logo img {
+    transition: transform 0.3s ease;
+}
+.logo:hover img {
+    transform: scale(1.05);
 }
 
 .nav-links {
@@ -230,22 +258,51 @@ h4 {
 
 
 /* Calendar Styles */
-#event-calendar {
-    background: white;
-    padding: 20px;
-    border-radius: 10px;
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-    margin-top: 30px;
-}
+.calendar-container {
+    max-width: 800px;
+    width: 100%;
+    padding: 40px 20px;
+  }
 
-.fc-toolbar-title {
-    color: var(--primary-color);
-}
+  .calendar-h1 {
+    text-align: center;
+    color: #2c3e50;
+    margin-bottom: 20px;
+  }
 
-.fc-button {
-    background: var(--primary-color) !important;
-    border: none !important;
-}
+  .event {
+    background: #ffffff;
+    border-left: 5px solid #3498db;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
+    margin-bottom: 15px;
+    padding: 15px 20px;
+    border-radius: 8px;
+    transition: transform 0.2s ease;
+  }
+
+  .event:hover {
+    transform: translateY(-2px);
+  }
+
+  .event-title {
+    font-size: 18px;
+    font-weight: bold;
+    margin: 0;
+    color: #2d3436;
+  }
+
+  .event-time {
+    font-size: 14px;
+    color: #636e72;
+    margin-top: 5px;
+  }
+
+  .event-location {
+    font-size: 14px;
+    color: #6c757d;
+    margin-top: 4px;
+  }
+  
 
 /* ===== About Page Styles ===== */
 
@@ -575,31 +632,152 @@ h4 {
     margin-top: -50px;
 }
 
-/* Responsive Design */
-@media (max-width: 768px) {
+/* ===== Mobile Responsive Styles ===== */
+@media (max-width: 992px) {
+    /* Adjust contact grid for tablets */
     .contact-grid {
-        grid-template-columns: 1fr;
+        gap: 30px;
     }
-
+    
     .contact-info,
     .contact-form {
-        padding: 20px;
+        padding: 25px;
     }
+}
 
+@media (max-width: 768px) {
+    /* Stack contact sections on mobile */
+    .contact-section {
+        padding: 60px 0;
+    }
+    
+    .contact-grid {
+        grid-template-columns: 1fr;
+        gap: 40px;
+    }
+    
+    /* Adjust info items */
+    .info-item {
+        flex-direction: column;
+    }
+    
+    .info-item i {
+        margin-bottom: 10px;
+        margin-right: 0;
+    }
+    
+    /* Form adjustments */
+    .form-group input,
+    .form-group textarea {
+        padding: 10px 12px;
+    }
+    
+    /* Map section */
     .map-section {
         margin-top: 0;
     }
 }
 
 @media (max-width: 480px) {
-    .info-item {
-        flex-direction: column;
+    /* Extra small devices */
+    .contact-section {
+        padding: 50px 0;
     }
-
-    .info-item i {
-        margin-bottom: 10px;
+    
+    .contact-info,
+    .contact-form {
+        padding: 20px;
+    }
+    
+    /* Social links */
+    .social-links {
+        justify-content: center;
+    }
+    
+    /* Form elements */
+    .form-group input,
+    .form-group textarea {
+        padding: 8px 10px;
+    }
+    
+    .btn-submit {
+        padding: 10px;
     }
 }
+
+/* Ensure content doesn't touch screen edges on mobile */
+@media (max-width: 768px) {
+    .container {
+        padding-left: 15px;
+        padding-right: 15px;
+    }
+    
+    .contact-info,
+    .contact-form {
+        margin-left: -15px;
+        margin-right: -15px;
+        width: calc(100% + 30px);
+        border-radius: 0;
+    }
+    
+    /* Optional: Add slight padding if you prefer */
+    /*
+    .contact-info,
+    .contact-form {
+        padding-left: 20px;
+        padding-right: 20px;
+    }
+    */
+}
+/* Mobile Menu Styles */
+
+.menu-toggle {
+    display: none; /* Hidden on desktop */
+    background: none;
+    border: none;
+    font-size: 24px;
+    cursor: pointer;
+    padding: 10px 15px;
+  }
+  
+  #navLinks {
+    display: flex; /* Visible on desktop */
+    gap: 20px;
+  }
+  
+  /* Mobile styles */
+  @media (max-width: 768px) {
+    .menu-toggle {
+      display: block; /* Show menu button */
+    }
+    
+    #navLinks {
+      display: none; /* Hide links by default */
+      position: absolute;
+      top: 50px;
+      right: 20px;
+      background: white;
+      padding: 15px;
+      border-radius: 5px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+      flex-direction: column;
+      width: 200px;
+    }
+    
+    #navLinks.active {
+      display: flex; /* Show when active */
+    }
+    
+    #navLinks a {
+      padding: 10px 0;
+      border-bottom: 1px solid #eee;
+    }
+    
+    #navLinks a:last-child {
+      border-bottom: none;
+    }
+  }
+
 
 /* Footer */
 footer {

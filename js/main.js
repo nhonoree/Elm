@@ -23,6 +23,12 @@ links.forEach(link => {
         hamburger.classList.remove('toggle');
     });
 });
+<script>
+    function toggleMenu() {
+        const nav = document.getElementById("navLinks");
+        nav.classList.toggle("active");
+    }
+</script>
 
 // Smooth Scrolling for anchor links
 document.querySelectorAll('a[href^="#"]:not([href="#"])').forEach(anchor => {
