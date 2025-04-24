@@ -84,7 +84,7 @@ h4 {
 /* Replace text logo with image logo */
 .logo {
     display: inline-block;
-    height: 50px; /* Adjust based on your image proportions */
+    height: 40px; /* Adjust based on your image proportions */
     width: auto; /* Maintain aspect ratio */
     position: relative;
     top: 3px; /* Fine-tune vertical alignment */
