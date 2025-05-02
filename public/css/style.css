@@ -571,7 +571,7 @@ h4 {
 /* Page Banner */
 .page-banner {
     background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)),
-        url('/public/images/elm\ website\ hello\ image.jpg');
+        url('/public/images/Elm\ banner.jpg');
     background-size: cover;
     background-position: center;
     height: 300px;
@@ -660,6 +660,78 @@ h4 {
         max-width: 250px;
     }
 }
+/* developer */
+.credit-section {
+    max-width: 900px;
+    margin: 60px auto;
+    padding: 40px 20px;
+    background-color: #eef6fb;
+    border-radius: 12px;
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.08);
+  }
+  
+  .credit-title {
+    font-size: 2rem;
+    text-align: center;
+    margin-bottom: 30px;
+    color: var(--primary-color);
+    position: relative;
+  }
+  
+  .credit-title::after {
+    content: '';
+    display: block;
+    width: 80px;
+    height: 4px;
+    background-color: var(--primary-color);
+    margin: 10px auto 0;
+    border-radius: 2px;
+  }
+  
+  .credit-container {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    gap: 30px;
+  }
+  
+  .developer-photo {
+    width: 160px;
+    height: 160px;
+    object-fit: cover;
+    border-radius: 50%;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  }
+  
+  .developer-info {
+    max-width: 500px;
+    font-size: 1rem;
+    color: #333;
+  }
+  .credit-container {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+  
+  .credit-container:hover {
+    transform: scale(1.02);
+    box-shadow: 0 8px 24px rgba(0, 123, 255, 0.2);
+  }
+  
+  .developer-photo {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+  
+  .developer-photo:hover {
+    transform: scale(1.1);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+  }
+  
+  .developer-info p:hover {
+    color: var(--primary-color);
+  }
+  
+  
 
 /* ===== Gallery Page Styles ===== */
 
