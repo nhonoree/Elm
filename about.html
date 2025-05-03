@@ -19,7 +19,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Elmshaven Choir | About us</title>
     <link rel="stylesheet" href="css/style.css">
-    <link rel="shortcut icon" href="/public/images/elm logo.png" type="image/png">
+    <link rel="shortcut icon" href="images/elm logo.png" type="image/png">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     
 </head>
@@ -28,7 +28,7 @@
     <nav class="navbar">
         <div class="container">
             <a href="home.html" class="logo">
-                <img src="/public/images/ELMSHAVEN_white logo cropped.png" alt="Elmshaven Choir Logo">
+                <img src="images/ELMSHAVEN white logo.png" alt="Elmshaven Choir Logo">
             </a>
             <button class="menu-toggle" onclick="toggleMenu()">☰</button>
             <ul class="nav-links" id="navLinks">
@@ -64,7 +64,7 @@
                     <p>Rooted in faith, we continue to touch hearts, inspire souls, and connect people to Jesus with every note we sing. Our mission is to create an atmosphere of worship where hearts are drawn closer to God, and lives are transformed by His grace, reflecting His love in every melody.</p>
                 </div>
                 <div class="about-image">
-                    <img src="/public/images/elm website hello image.jpg" alt="Early days of Emhaven Choir Choir">
+                    <img src="images/elm website hello image.jpg" alt="Early days of Emhaven Choir Choir">
                 </div>
             </div>
         </div>
@@ -175,7 +175,7 @@
       align-items: center;
       justify-content: center;
       border-radius: 15px;
-      padding: 20px;
+      padding: 15px;
       box-sizing: border-box;
       box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
       text-align: center;
@@ -242,31 +242,50 @@ font-size: 1.1em;
 margin-bottom: 60px; /* 👈 Add this line */
 }
     
-    @media (max-width: 768px) {
-      .choir-carousel-container {
-        height: 300px;
-      }
+@media (max-width: 768px) {
+  .choir-carousel-container {
+    height: 320px; /* slightly increased for comfort */
+  }
 
-      .choir-card {
-        width: 160px;
-        height: 280px;
-        margin-right: 15px;
-      }
+  .choir-card {
+    width: 180px;
+    height: 300px;
+    margin-right: 12px;
+  }
 
-      .choir-card img {
-        width: 120px;
-        height: 120px;
-      }
+  .choir-card img {
+    width: 100px;
+    height: 100px;
+    margin-top: 20px;
+  }
 
-      .choir-name {
-        font-size: 1em;
-      }
+  .choir-name {
+    font-size: 1em;
+    margin: 5px 0;
+  }
 
-      .choir-title,
-      .choir-desc {
-        font-size: 0.8em;
-      }
-    }
+  .choir-title,
+  .choir-card-back .choir-title {
+    font-size: 0.85em;
+    font-style: normal;
+    color: #ddd;
+  }
+
+  .choir-desc {
+    font-size: 0.75em;
+    padding: 0 5px;
+    max-height: 100px;
+    overflow-y: auto;
+    line-height: 1.4;
+    color: #f0f0f0;
+  }
+
+  .choir-front-title {
+    font-size: 0.9em;
+    top: 10px;
+  }
+}
+
   </style>
     <div class="choir-carousel-container">
  
@@ -279,28 +298,28 @@ margin-bottom: 60px; /* 👈 Add this line */
             title: 'VICE PRESIDENT',
             name: 'Yves NIYOMUGABO',
             role: 'Vice President',
-            img: '/public/images/Yves Elm.jpg',
+            img: 'images/Yves Elm.jpg',
             desc: 'supports the choir president in overseeing the overall coordination and planning of weekly choir activities. This role ensures smooth execution of rehearsals, performances, and events, while assisting in the leadership and spiritual growth of the choir members.'
           },
           {
             title: 'ACCOUNTANT',
             name: 'Ruth MUTUYIMANA',
             role: 'Accountant',
-            img: '/public/images/Ruth Elm.jpg',
+            img: 'images/Ruth Elm.jpg',
             desc: 'Manages the finances of Elmshaven Choir with precision, overseeing all financial records and ensuring transparency and accountability in every transaction. Her dedication ensures that the choir’s resources are used effectively to support our mission and activities.'
           },
           {
             title: 'PRAYERS ORGANIZER',
             name: 'Protais UMUHUNGU',
             role: 'Prayer Leader',
-            img: '/public/images/Protais Elm OG.jpg',
+            img: 'images/Protais Elm OG.jpg',
             desc: 'Leads our prayer sessions and prepares weekly devotional themes that uplift and guide the choir spiritually. His role ensures that our ministry remains deeply rooted in faith, keeping Christ at the center of everything we do.'
           },
           {
             title: 'DISCIPLINE LEADER',
             name: 'Jean De Duei MANIRAKIZA',
             role: 'Discipline Head',
-            img: '/public/images/Jado.jpg',
+            img: 'images/Jado.jpg',
             desc: 'Upholds our values by promoting respect, punctuality, and order among members. His leadership helps preserve the harmony and integrity that define Elmshaven Choir.'
           },
           // {
@@ -314,21 +333,21 @@ margin-bottom: 60px; /* 👈 Add this line */
             title: 'SOCIAL AFAIR CORDINATOR',
             name: 'Emmanuel TUYIZERE',
             role: 'Social Coordinator',
-            img: '/public/images/Emmy Elm.jpg',
+            img: 'images/Emmy Elm.jpg',
             desc: 'Coordinates all choir events, celebrations, and member welfare activities, helping foster unity and joy in our community. He also manages our social media presence, spreading the message of gospel music and faith to a broader audience.'
           },
           {
             title: 'SPECIAL ADVISOR',
             name: 'Mr. Gratien',
             role: 'Former President',
-            img: '/public/images/Gratien Elm.jpg',
+            img: 'images/Gratien Elm.jpg',
             desc: ' faithfully led Elmshaven Choir for three years, laying a strong foundation for our growth in unity and musical excellence. Today, he continues to support the choir as a trusted advisor, offering wisdom, encouragement, and spiritual insight to guide our journey forward.'
           },
           {
             title: 'Music Coach',
             name: 'Fidelite UWINEZA',
             role: 'Choir Coach',
-            img: '/public/images/Fidelite Elm.jpg',
+            img: 'images/Fidelite Elm.jpg',
             desc: 'Provides vocal training, strengthens musical technique, and guides the choir during rehearsals. Her passion and direction help us grow in harmony, excellence, and purpose as we prepare to minister through music.'
           }
         ];
@@ -382,17 +401,21 @@ margin-bottom: 60px; /* 👈 Add this line */
       </script>
       
   </section>
-  <section class="credit-section">
-    <h2 class="credit-title">Developer Credit</h2>
-    <div class="credit-container">
-      <img src="/public//images/Honore Elm.jpg" alt="Developer Photo" class="developer-photo">
-      <div class="developer-info">
-        <p>This website was developed with passion and precision for Elmshaven Choir.</p>
-        <p><strong>Developer:</strong> Honore NIYIREMA</p>
-        <p><strong>Role:</strong> Web Designer & Developer</p>
+
+  
+    <div class="credit-section">
+     
+      <div class="developer-card">
+        <h1 class="credit-title">Credits</h1>
+        <img src="images/Honore Elm.jpg" alt="Developer Photo" class="developer-photo">
+       
+        <p class="developer-role">Designed & Developed by</p>
+        <h2 class="developer-name">Honore NIYIREMA</h2>
+        <p class="developer-contact"><a href="mailto:niyiremahonore@gmail.com">Niyiremahonore@gmail.com</a></p>
       </div>
-    </div>
-  </section>
+  
+    
+  </div>
   
   
     <!-- Same footer as index.html -->

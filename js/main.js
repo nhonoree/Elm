@@ -16,6 +16,38 @@ hamburger.addEventListener('click', () => {
     hamburger.classList.toggle('toggle');
 });
 
+// this is for typing effect of Elmshaven choir
+// this is for typing effect of Elmshaven choir
+document.addEventListener('DOMContentLoaded', function () {
+    const text = "Welcome to Elmshaven Choir";
+    const typingSpeed = 100; // typing speed in milliseconds
+    const pauseTime = 2000; // pause time after finishing typing
+    let index = 0;
+    let typingElement = document.getElementById('typewriter-text');
+  
+    function typeText() {
+        // Clear the text before starting if there's any previous text
+        typingElement.innerText = '';
+        index = 0; // Reset index so typing starts from the beginning
+  
+        // Function to type the text one character at a time
+        function typeNextChar() {
+            if (index < text.length) {
+                typingElement.innerText += text.charAt(index);
+                index++;
+                setTimeout(typeNextChar, typingSpeed); // Continue typing
+            } else {
+                // After typing is complete, wait for a pause before restarting
+                setTimeout(typeText, pauseTime); // Restart typing after pause
+            }
+        }
+  
+        typeNextChar(); // Start the typing effect
+    }
+  
+    typeText(); // Call the function once to start typing when the page loads
+  });
+  
 // Close mobile nav when a link is clicked
 links.forEach(link => {
     link.addEventListener('click', () => {
