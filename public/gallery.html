@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Emshaven Choir | Gallery</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="shortcut icon" href="/public/images/elm logo.png" type="image/png">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/lightgallery-js/1.4.0/css/lightgallery.min.css">
+    <meta name="description" content="Explore performances and behind-the-scenes moments of Emshaven Choir">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="container">
+            <a href="home.html" class="logo">
+                <img src="images/logo support.jpg" alt="Elmshaven Choir Logo">
+            </a>
+            <button class="menu-toggle" onclick="toggleMenu()">☰</button>
+            <ul class="nav-links" id="navLinks">
+                <li><a href="home.html">Home</a></li>
+                <li><a href="about.html">About Us</a></li>
+                <li><a href="gallery.html" class="active">Gallery</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+            <div class="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </nav>
+    
+    <!-- Gallery Banner -->
+    <section class="page-banner">
+        <div class="container">
+            <h1>Our Gallery</h1>
+            <p>comming soon</p>
+        </div>
+    </section>
+
+    <!-- Gallery Section
+    <section class="section gallery-section">
+        <div class="container">
+            <div class="gallery-filter">
+                <button class="filter-btn active" data-filter="all">All</button>
+                <button class="filter-btn" data-filter="performances">Performances</button>
+                <button class="filter-btn" data-filter="rehearsals">Rehearsals</button>
+                <button class="filter-btn" data-filter="events">Events</button>
+            </div>
+            
+            <div class="gallery-container">
+                <a href="images/concert-1.jpg" class="gallery-item performances">
+                    <img src="images/concert-1-thumb.jpg" alt="Winter Concert">
+                    <div class="overlay">
+                        <h3>Winter Concert 2023</h3>
+                    </div>
+                </a>
+                <a href="images/rehearsal-1.jpg" class="gallery-item rehearsals">
+                    <img src="images/elm website hello image.jpg" alt="Choir Rehearsal">
+                    <div class="overlay">
+                        <h3>Weekly Rehearsal</h3>
+                    </div>
+                </a>
+                Add more items here -->
+            <!-- </div>
+        </div>
+    </section> -->
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li><a href="home.html">Home</a></li>
+                        <li><a href="about.html">About Us</a></li>
+                        <li><a href="gallery.html">Gallery</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>Connect With Us</h3>
+                    <div class="social-icons">
+                        <!-- <a href="#"><i class="fab fa-facebook"></i></a> -->
+                        <a href="https://www.instagram.com/elmshaven_choir?igsh=MWF0aHZvaGJtODd2bg=="><i
+                                class="fab fa-instagram"></i></a>
+                        <a href="https://www.youtube.com/@elmshavenchoir"><i class="fab fa-youtube"></i></a>
+                        <a href="https://x.com/elm_2020"><i class="fab fa-twitter"></i></a>
+                        <a href="https://open.spotify.com/artist/0SeJqiqGSzVEi76JRq5h2r?si=zMSRebuuS5qPDff2s__sMg"><i class="fab fa-spotify"></i></a>
+                        
+                    </div>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>&copy; <span id="year"></span> Elmshaven Choir. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/lightgallery-js/1.4.0/js/lightgallery.min.js"></script>
+    <script src="js/main.js"></script>
+    <script>
+        // Initialize lightGallery
+        lightGallery(document.querySelector('.gallery-container'), {
+            selector: '.gallery-item',
+            download: false
+        });
+        
+        // Auto-update copyright year
+        document.getElementById('year').textContent = new Date().getFullYear();
+    </script>
+
+<!-- This is js for mune for mobile phone -->
+<script>
+    function toggleMenu() {
+        const menuToggle = document.querySelector('.menu-toggle');
+        const navLinks = document.getElementById('navLinks');
+        
+        // Toggle active classes
+        menuToggle.classList.toggle('active');
+        navLinks.classList.toggle('active');
+        
+        // Toggle body scroll when menu is open
+        document.body.style.overflow = navLinks.classList.contains('active') ? 'hidden' : '';
+        
+        // Close menu when clicking on a link (event delegation)
+        navLinks.addEventListener('click', function(e) {
+            if (e.target.tagName === 'A') {
+                menuToggle.classList.remove('active');
+                navLinks.classList.remove('active');
+                document.body.style.overflow = '';
+            }
+        });
+    }
+    </script>
+
+
+</body>
+</html>
