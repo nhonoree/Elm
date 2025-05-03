@@ -600,10 +600,19 @@ h4 {
   /* Responsive: 1 column on small screens */
   @media (max-width: 768px) {
     #events {
+      display: grid;
       grid-template-columns: 1fr;
       grid-template-rows: auto;
+      width: 100%;
+      padding: 0 10px; /* optional: to add side spacing */
+      box-sizing: border-box;
+    }
+  
+    #events .card {
+      width: 100%;
     }
   }
+  
   
   
 /* ===== About Page Styles ===== */
