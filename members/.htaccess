@@ -1,0 +1,5 @@
+AuthType Basic
+AuthName "Members Only Area"
+AuthUserFile /full/server/path/to/.htpasswd
+Require valid-user
+ErrorDocument 401 "Unauthorized Access"

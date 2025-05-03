@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Elmshaven Choir | Home</title>
+    <link rel="icon" type="image//x-icon" href="/images/favicon.ico">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <!-- Preload critical resources -->
+    <link rel="preload" href="js/main.js" as="script">
+    <link rel="preload" href="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.9/index.global.min.js" as="script">
+
+</head>
+
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="container">
+            <a href="home.html" class="logo">
+                <img src="images/logo support.jpg" alt="Elmshaven Choir Logo">
+            </a>
+            <!-- Menu Toggle Button (Hamburger) -->
+            <button class="menu-toggle" onclick="toggleMenu()">
+                ☰
+            </button>
+            <ul class="nav-links" id="navLinks">
+                <li><a href="home.html" class="active">Home</a></li>
+                <li><a href="about.html">About Us</a></li>
+                <li><a href="gallery.html">Gallery</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+            <div class="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <header class="hero">
+        <div class="hero-content">
+            <h1>Welcome to Elmshaven Choir</h1>
+            <p>where music connects souls to Jesus</p>
+            <a href="#about" class="btn">Learn More</a>
+        </div>
+    </header>
+
+    <!-- About Section -->
+    <section id="about" class="section">
+        <div class="container">
+            <h2>Our Mission</h2>
+            <p>We aspire to invite all people into a saving relationship with Jesus Christ through the gift of music.
+            </p>
+            <div class="mission-cards">
+                <div class="card">
+                    <i class="fas fa-music"></i>
+                    <h3>Perform</h3>
+                    <p>We give amazing choir performances, not just once, but all through the year.</p>
+                </div>
+                <div class="card">
+                    <i class="fas fa-users"></i>
+                    <h3>Educate</h3>
+                    <p>We're helping young people discover how powerful and beautiful choir music is.</p>
+                </div>
+                <div class="card">
+                    <i class="fas fa-heart"></i>
+                    <h3>Inspire</h3>
+                    <p>We create musical experiences that move people emotionally, lift their spirits, and draw them closer to God</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- <video section> -->
+    <!-- Video Section -->
+    <section class="video-section">
+        <div class="container">
+            <h2>Our Performances</h2>
+            <div class="video-slider-viewport">
+                <div class="video-slider-track" id="video-container">
+                    <!-- Videos injected by JS -->
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const container = document.getElementById('video-container');
+            const apiKey = 'AIzaSyCLlQ2ACvR0FYTeCRWn7YIxRGn8G06Es_A';
+            const channelId = 'UC7kSE08qxxyLaBU7pXT0MBw';
+            const maxResults = 4;
+            const apiUrl = `https://www.googleapis.com/youtube/v3/search?key=${apiKey}&channelId=${channelId}&part=snippet,id&order=date&maxResults=${maxResults}`;
+
+            // Slider control
+            let slideInterval;
+            let index = 0;
+            let totalVideos = 0;
+            const slideWidth = 50; // 50% per slide
+
+            // YouTube players
+            let players = [];
+            let isAnyVideoPlaying = false;
+
+            // Load YouTube API
+            const tag = document.createElement('script');
+            tag.src = "https://www.youtube.com/iframe_api";
+            document.head.appendChild(tag);
+
+            // Slider functions
+            function startSlider() {
+                if (!isAnyVideoPlaying && !slideInterval) {
+                    slideInterval = setInterval(slideNext, 4000);
+                }
+            }
+
+            function stopSlider() {
+                clearInterval(slideInterval);
+                slideInterval = null;
+            }
+
+            function slideNext() {
+                index++;
+                container.style.transition = 'transform 0.6s ease-in-out';
+                container.style.transform = `translateX(-${index * slideWidth}%)`;
+
+                if (index >= totalVideos - 2) {
+                    setTimeout(() => {
+                        container.style.transition = 'none';
+                        container.style.transform = 'translateX(0)';
+                        index = 0;
+                    }, 700);
+                }
+            }
+
+            // Fetch videos
+            fetch(apiUrl)
+                .then(res => res.json())
+                .then(data => {
+                    const videos = data.items.filter(item => item.id.kind === 'youtube#video');
+                    if (videos.length < 4) return;
+
+                    const videoData = [...videos, videos[0], videos[1]]; // For looping
+                    totalVideos = videoData.length;
+
+                    // Create video elements
+                    videoData.forEach((video, i) => {
+                        const videoItem = document.createElement('div');
+                        videoItem.className = 'video-item';
+                        videoItem.innerHTML = `
+                    <div class="video-wrapper">
+                        <div id="yt-player-${i}"></div>
+                    </div>
+                    <h3>${video.snippet.title}</h3>
+                `;
+                        container.appendChild(videoItem);
+                    });
+
+                    // Initialize YouTube players after API loads
+                    window.onYouTubeIframeAPIReady = function () {
+                        videoData.forEach((video, i) => {
+                            players[i] = new YT.Player(`yt-player-${i}`, {
+                                videoId: video.id.videoId,
+                                events: {
+                                    'onStateChange': onPlayerStateChange
+                                }
+                            });
+                        });
+                        startSlider();
+                    };
+                })
+                .catch(err => console.error('YouTube API error:', err));
+
+            // Handle video state changes
+            function onPlayerStateChange(event) {
+                // 1 = playing, 2 = paused, 0 = ended
+                if (event.data === 1) { // Playing
+                    isAnyVideoPlaying = true;
+                    stopSlider();
+                } else if (event.data === 2 || event.data === 0) { // Paused or ended
+                    // Check if ANY video is still playing
+                    isAnyVideoPlaying = players.some(p => p && p.getPlayerState && p.getPlayerState() === 1);
+                    if (!isAnyVideoPlaying) startSlider();
+                }
+            }
+        });
+    </script>
+
+
+    <!-- Calendar Section -->
+    <div class="calendar-container">
+        <h1>Upcoming Events</h1>
+        <div id="events"></div>
+    </div>
+
+    <!-- This is js for coming events(google calendar) -->
+
+    <script>
+        const calendarId = 'elmshavenchoir@gmail.com'; // Replace this!
+        const apiKey = 'AIzaSyASCPdvJJ95ZTCfW_CIAyWZIJHOvR34Z54'; // Replace this!
+        const maxResults = 10;
+
+        const url = `https://www.googleapis.com/calendar/v3/calendars/${calendarId}/events?key=${apiKey}&orderBy=startTime&singleEvents=true&timeMin=${new Date().toISOString()}&maxResults=${maxResults}`;
+
+        fetch(url)
+            .then(response => response.json())
+            .then(data => {
+                const eventsDiv = document.getElementById('events');
+                if (data.items && data.items.length > 0) {
+                    data.items.forEach(event => {
+                        const title = event.summary || '(No Title)';
+                        const start = event.start.dateTime || event.start.date;
+                        const date = new Date(start);
+                        const timeString = date.toLocaleString(undefined, {
+                            dateStyle: 'medium',
+                            timeStyle: event.start.dateTime ? 'short' : undefined
+                        });
+                        const location = event.location || 'Location not specified';
+
+                        const eventHTML = `
+                <div class="event">
+                  <p class="event-title">${title}</p>
+                  <p class="event-time">📅 ${timeString}</p>
+                  <p class="event-location">📍 ${location}</p>
+                </div>
+              `;
+                        eventsDiv.innerHTML += eventHTML;
+                    });
+                } else {
+                    eventsDiv.innerHTML = '<p>No upcoming events found.</p>';
+                }
+            })
+            .catch(err => {
+                console.error('Error fetching events:', err);
+                document.getElementById('events').innerHTML = '<p>Error loading events.</p>';
+            });
+    </script>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li><a href="home.html">Home</a></li>
+                        <li><a href="about.html">About Us</a></li>
+                        <li><a href="gallery.html">Gallery</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>Connect With Us</h3>
+                    <div class="social-icons">
+                        <!-- <a href="#"><i class="fab fa-facebook"></i></a> -->
+                        <a href="https://www.instagram.com/elmshaven_choir?igsh=MWF0aHZvaGJtODd2bg=="><i
+                                class="fab fa-instagram"></i></a>
+                        <a href="https://www.youtube.com/@elmshavenchoir"><i class="fab fa-youtube"></i></a>
+                        <a href="https://x.com/elm_2020"><i class="fab fa-twitter"></i></a>
+                        <a href="https://open.spotify.com/artist/0SeJqiqGSzVEi76JRq5h2r?si=zMSRebuuS5qPDff2s__sMg"><i class="fab fa-spotify"></i></a>
+                        
+                    </div>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>&copy; <span id="year"></span> Elmshaven Choir. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+
+    <!-- This is js for mune for mobile phone -->
+    <script>
+        function toggleMenu() {
+            const menuToggle = document.querySelector('.menu-toggle');
+            const navLinks = document.getElementById('navLinks');
+
+            // Toggle active classes
+            menuToggle.classList.toggle('active');
+            navLinks.classList.toggle('active');
+
+            // Toggle body scroll when menu is open
+            document.body.style.overflow = navLinks.classList.contains('active') ? 'hidden' : '';
+
+            // Close menu when clicking on a link (event delegation)
+            navLinks.addEventListener('click', function (e) {
+                if (e.target.tagName === 'A') {
+                    menuToggle.classList.remove('active');
+                    navLinks.classList.remove('active');
+                    document.body.style.overflow = '';
+                }
+            });
+        }
+    </script>
+<script>
+      // Auto-update copyright year
+      document.getElementById('year').textContent = new Date().getFullYear();
+</script>
+    <script src="js/main.js"></script>
+</body>
+
+</html>
