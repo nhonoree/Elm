@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- SEO Meta Tags -->
+<meta name="description" content="[Your choir description]">
+<meta name="keywords" content="choir, vocal, music, [your city], singing">
+<meta name="author" content="Your Choir Name">
+
+<!-- Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=GA_MEASUREMENT_ID"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'GA_MEASUREMENT_ID');
+</script>
+    <!-- Same head as index.html -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Elmshaven Choir | Home</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <title>Elmshaven Choir | About Us</title>
+</head>
+<body>
+    <!-- Same navigation as index.html -->
+    <nav class="navbar">
+        <div class="container">
+            <a href="home.html" class="logo">
+                <img src="images/logo support.jpg" alt="Elmshaven Choir Logo">
+            </a>
+            <button class="menu-toggle" onclick="toggleMenu()">☰</button>
+            <ul class="nav-links" id="navLinks">
+                <li><a href="home.html">Home</a></li>
+                <li><a href="about.html" class="active">About Us</a></li>
+                <li><a href="gallery.html">Gallery</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+            <div class="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </nav>
+    <!-- About Us Banner -->
+    <section class="page-banner">
+        <div class="container">
+            <h1>About Our Choir</h1>
+        </div>
+    </section>
+
+    <!-- History Section -->
+    <section class="section">
+        <div class="container">
+            <div class="about-content">
+                <div class="about-text">
+                    <h2>Our History</h2>
+                    <p>Founded in 2005, Elmshaven Choir began as a small group of passionate singers in a local church. Over the years, we’ve grown into a vibrant choir of more than 30 dedicated members.</p><br>
+                    <p>Our journey has taken us from humble beginnings to performing in renowned concert halls, but our mission remains unchanged: to share the joy, beauty, and message of choral music with all.</p>
+                    <p>Rooted in faith and united by music, we are committed to touching hearts, inspiring souls, and connecting people to Jesus through every note we sing.</p>
+                </div>
+                <div class="about-image">
+                    <img src="/images/elm website hello image.jpg" alt="Early days of Harmony Choir">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Conductor Section -->
+    <section class="section bg-light">
+        <div class="container">
+            <h2 class="text-center">Meet Our Conductor</h2>
+            <div class="conductor-profile">
+                <div class="conductor-image">
+                    <img src="images/Boss.jpg" alt="Mr Jean De Duei">
+                </div>
+                <div class="conductor-bio">
+                    <h3>Mr Jean De Deui NIYONKURU</h3>
+                    <p>Over 20 years of commitment and experience within our choir family, Mr. Jean De Deui brings deep knowledge, creativity, and heartfelt passion to Elmshaven Choir. As the founder and current president, he was there from the very beginning, helping form what started as a small group of dedicated singers in a local church.</p>
+                    <p>His leadership and innovative approach to choral music have shaped the choir’s sound and spirit, inspiring members to grow musically and spiritually. Through his guidance, Elmshaven Choir continues its mission to share the love of God and the beauty of music with every performance.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Same footer as index.html -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li><a href="home.html">Home</a></li>
+                        <li><a href="about.html">About Us</a></li>
+                        <li><a href="gallery.html">Gallery</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>Connect With Us</h3>
+                    <div class="social-icons">
+                        <!-- <a href="#"><i class="fab fa-facebook"></i></a> -->
+                        <a href="https://www.instagram.com/elmshaven_choir?igsh=MWF0aHZvaGJtODd2bg=="><i
+                                class="fab fa-instagram"></i></a>
+                        <a href="https://www.youtube.com/@elmshavenchoir"><i class="fab fa-youtube"></i></a>
+                        <a href="https://x.com/elm_2020"><i class="fab fa-twitter"></i></a>
+                        <a href="https://open.spotify.com/artist/0SeJqiqGSzVEi76JRq5h2r?si=zMSRebuuS5qPDff2s__sMg"><i class="fab fa-spotify"></i></a>
+                        
+                    </div>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>&copy; <span id="year"></span> Elmshaven Choir. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- This is js for mune for mobile phone -->
+    <script>
+        function toggleMenu() {
+            const menuToggle = document.querySelector('.menu-toggle');
+            const navLinks = document.getElementById('navLinks');
+            
+            // Toggle active classes
+            menuToggle.classList.toggle('active');
+            navLinks.classList.toggle('active');
+            
+            // Toggle body scroll when menu is open
+            document.body.style.overflow = navLinks.classList.contains('active') ? 'hidden' : '';
+            
+            // Close menu when clicking on a link (event delegation)
+            navLinks.addEventListener('click', function(e) {
+                if (e.target.tagName === 'A') {
+                    menuToggle.classList.remove('active');
+                    navLinks.classList.remove('active');
+                    document.body.style.overflow = '';
+                }
+            });
+        }
+        </script>
+
+        <script>
+              // Auto-update copyright year
+        document.getElementById('year').textContent = new Date().getFullYear();
+        </script>
+
+
+    <script src="js/main.js"></script>
+</body>
+</html>
