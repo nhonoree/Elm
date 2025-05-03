@@ -17,17 +17,18 @@
     <!-- Same head as index.html -->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Elmshaven Choir | Home</title>
+    <title>Elmshaven Choir | About us</title>
     <link rel="stylesheet" href="css/style.css">
+    <link rel="shortcut icon" href="/public/images/elm logo.png" type="image/png">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-    <title>Elmshaven Choir | About Us</title>
+    
 </head>
 <body>
     <!-- Same navigation as index.html -->
     <nav class="navbar">
         <div class="container">
             <a href="home.html" class="logo">
-                <img src="images/logo support.jpg" alt="Elmshaven Choir Logo">
+                <img src="/public/images/ELMSHAVEN_white logo cropped.png" alt="Elmshaven Choir Logo">
             </a>
             <button class="menu-toggle" onclick="toggleMenu()">☰</button>
             <ul class="nav-links" id="navLinks">
@@ -56,12 +57,14 @@
             <div class="about-content">
                 <div class="about-text">
                     <h2>Our History</h2>
-                    <p>Founded in 2005, Elmshaven Choir began as a small group of passionate singers in a local church. Over the years, we’ve grown into a vibrant choir of more than 30 dedicated members.</p><br>
-                    <p>Our journey has taken us from humble beginnings to performing in renowned concert halls, but our mission remains unchanged: to share the joy, beauty, and message of choral music with all.</p>
-                    <p>Rooted in faith and united by music, we are committed to touching hearts, inspiring souls, and connecting people to Jesus through every note we sing.</p>
+                    <p>Founded in <b>2005</b>, Elmshaven Choir began as a group of passionate young singers at <b>Karambo SDA Church</b>, united by a shared love for the gospel. From those humble beginnings, our choir’s mission has remained clear: to spread the love of God and His wondrous deeds through the gift of gospel music.
+                    </p><br>
+                    <p>Over the years, we’ve been blessed to see our ministry grow, expanding our reach to different communities while staying true to our calling to preach the gospel through song. In <b>2019</b>, we were officially recognized as a choir by our church, marking a significant milestone in our journey.
+                    </p><br>
+                    <p>Rooted in faith, we continue to touch hearts, inspire souls, and connect people to Jesus with every note we sing. Our mission is to create an atmosphere of worship where hearts are drawn closer to God, and lives are transformed by His grace, reflecting His love in every melody.</p>
                 </div>
                 <div class="about-image">
-                    <img src="/images/elm website hello image.jpg" alt="Early days of Harmony Choir">
+                    <img src="/public/images/elm website hello image.jpg" alt="Early days of Emhaven Choir Choir">
                 </div>
             </div>
         </div>
@@ -70,20 +73,328 @@
     <!-- Conductor Section -->
     <section class="section bg-light">
         <div class="container">
-            <h2 class="text-center">Meet Our Conductor</h2>
+            <h2 class="text-center">Meet Our Visionary Leader
+            </h2>
             <div class="conductor-profile">
                 <div class="conductor-image">
                     <img src="images/Boss.jpg" alt="Mr Jean De Duei">
                 </div>
                 <div class="conductor-bio">
-                    <h3>Mr Jean De Deui NIYONKURU</h3>
-                    <p>Over 20 years of commitment and experience within our choir family, Mr. Jean De Deui brings deep knowledge, creativity, and heartfelt passion to Elmshaven Choir. As the founder and current president, he was there from the very beginning, helping form what started as a small group of dedicated singers in a local church.</p>
-                    <p>His leadership and innovative approach to choral music have shaped the choir’s sound and spirit, inspiring members to grow musically and spiritually. Through his guidance, Elmshaven Choir continues its mission to share the love of God and the beauty of music with every performance.</p>
+                    <h3>Mr Jean De Dieu NIYONKURU</h3>
+                    <p>As the president of Elmshaven Choir, Mr. Jean De Dieu Niyonkuru has been a cornerstone of our community. His deep knowledge of leadership, paired with a passion for music and faith, has shaped the choir’s growth and spirit.
+                    </p>
+                    <p>Through his guidance, our unity has been strengthened, and our mission to spread the love of God and the beauty of music continues to thrive. His leadership inspires us all to grow, not only musically but spiritually, as we reach new heights in every performance.</p>
                 </div>
             </div>
         </div>
     </section>
+    <div class="choir-title-wrapper">
+      <h3 class="underline-title">Our Committee Members</h3>
+    </div>
+    <style>
+    .choir-title-wrapper {
+      text-align: center;
+      margin-top: 2rem;
+      margin-bottom: 1rem;
+    }
+    
+    .underline-title {
+      position: relative;
+      display: inline-block;
+      font-size: 1.8rem;
+      margin-bottom: 0.5rem;
+      color: #333;
+      font-weight: bold;
+    }
+    
+    .underline-title::after {
+      content: '';
+      position: absolute;
+      bottom: -10px;
+      left: 25%;
+      width: 50%;
+      height: 5px;
+      background-color: #4a6fa5;
+      border-radius: 2px;
+    }
+</style>    
+<!-- Our Leadership Team -->
+<section class="choir-carousel-section">
+  <style>
+    .choir-carousel-section {
+      --choir-primary-color: #4a6fa5;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background: #f5f5f5;
+      padding: 2rem 1rem;
+      font-family: Arial, sans-serif;
+    }
 
+    .choir-carousel-container {
+      width: 100%;
+      max-width: 1000px;
+      height: 400px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .choir-carousel-track {
+      display: flex;
+      will-change: transform;
+    }
+
+    .choir-card {
+      width: 220px;
+      height: 380px;
+      perspective: 1200px;
+      flex-shrink: 0;
+      margin-right: 25px;
+    }
+
+    .choir-card-inner {
+      width: 100%;
+      height: 100%;
+      transition: transform 0.7s;
+      transform-style: preserve-3d;
+      position: relative;
+    }
+
+    .choir-card:hover .choir-card-inner {
+      transform: rotateY(180deg);
+    }
+
+    .choir-card-front,
+    .choir-card-back {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      backface-visibility: hidden;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      border-radius: 15px;
+      padding: 20px;
+      box-sizing: border-box;
+      box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+      text-align: center;
+    }
+
+    .choir-card-front {
+      background: white;
+    }
+
+    .choir-card-back {
+      background-color: var(--choir-primary-color);
+      color: white;
+      transform: rotateY(180deg);
+    }
+
+    .choir-card img {
+width: 180px;
+height: 180px;
+object-fit: cover; /* Ensures image fills the space without distortion */
+border-radius: 50%;
+margin-top: 40px;
+margin-bottom: 15px;
+border: 4px solid #fff;
+box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+   
+    .choir-name {
+      font-weight: bold;
+      font-size: 1.3em;
+      margin: 10px 0;
+      color: var(--choir-primary-color);
+    }
+
+    .choir-card-back .choir-name {
+      color: white;
+    }
+
+    .choir-title {
+      font-style: italic;
+      color: #666;
+      font-size: 1em;
+      margin-bottom: 15px;
+    }
+
+    .choir-card-back .choir-title {
+      color: white;
+      font-style: normal;
+    }
+
+    .choir-desc {
+      font-size: 0.9em;
+      line-height: 1.5;
+      color: white;
+    }
+
+    .choir-front-title {
+position: absolute;
+top: 20px;
+left: 0;
+right: 0;
+font-weight: bold;
+color: #444;
+font-size: 1.1em;
+margin-bottom: 60px; /* 👈 Add this line */
+}
+    
+    @media (max-width: 768px) {
+      .choir-carousel-container {
+        height: 300px;
+      }
+
+      .choir-card {
+        width: 160px;
+        height: 280px;
+        margin-right: 15px;
+      }
+
+      .choir-card img {
+        width: 120px;
+        height: 120px;
+      }
+
+      .choir-name {
+        font-size: 1em;
+      }
+
+      .choir-title,
+      .choir-desc {
+        font-size: 0.8em;
+      }
+    }
+  </style>
+    <div class="choir-carousel-container">
+ 
+      <div class="choir-carousel-track" id="choir-carousel-track"></div>
+    </div>
+  
+    <script>
+        const choirMembers = [
+          {
+            title: 'VICE PRESIDENT',
+            name: 'Yves NIYOMUGABO',
+            role: 'Vice President',
+            img: '/public/images/Yves Elm.jpg',
+            desc: 'supports the choir president in overseeing the overall coordination and planning of weekly choir activities. This role ensures smooth execution of rehearsals, performances, and events, while assisting in the leadership and spiritual growth of the choir members.'
+          },
+          {
+            title: 'ACCOUNTANT',
+            name: 'Ruth MUTUYIMANA',
+            role: 'Accountant',
+            img: '/public/images/Ruth Elm.jpg',
+            desc: 'Manages the finances of Elmshaven Choir with precision, overseeing all financial records and ensuring transparency and accountability in every transaction. Her dedication ensures that the choir’s resources are used effectively to support our mission and activities.'
+          },
+          {
+            title: 'PRAYERS ORGANIZER',
+            name: 'Protais UMUHUNGU',
+            role: 'Prayer Leader',
+            img: '/public/images/Protais Elm OG.jpg',
+            desc: 'Leads our prayer sessions and prepares weekly devotional themes that uplift and guide the choir spiritually. His role ensures that our ministry remains deeply rooted in faith, keeping Christ at the center of everything we do.'
+          },
+          {
+            title: 'DISCIPLINE LEADER',
+            name: 'Jean De Duei MANIRAKIZA',
+            role: 'Discipline Head',
+            img: '/public/images/Jado.jpg',
+            desc: 'Upholds our values by promoting respect, punctuality, and order among members. His leadership helps preserve the harmony and integrity that define Elmshaven Choir.'
+          },
+          // {
+          //   title: 'CHURCH ELDER',
+          //   name: 'Elder Grace',
+          //   role: 'Spiritual Guide',
+          //   img: 'https://randomuser.me/api/portraits/women/50.jpg',
+          //   desc: 'Offers spiritual guidance and mentors younger choir members with biblical wisdom.'
+          // },
+          {
+            title: 'SOCIAL AFAIR CORDINATOR',
+            name: 'Emmanuel TUYIZERE',
+            role: 'Social Coordinator',
+            img: '/public/images/Emmy Elm.jpg',
+            desc: 'Coordinates all choir events, celebrations, and member welfare activities, helping foster unity and joy in our community. He also manages our social media presence, spreading the message of gospel music and faith to a broader audience.'
+          },
+          {
+            title: 'SPECIAL ADVISOR',
+            name: 'Mr. Gratien',
+            role: 'Former President',
+            img: '/public/images/Gratien Elm.jpg',
+            desc: ' faithfully led Elmshaven Choir for three years, laying a strong foundation for our growth in unity and musical excellence. Today, he continues to support the choir as a trusted advisor, offering wisdom, encouragement, and spiritual insight to guide our journey forward.'
+          },
+          {
+            title: 'Music Coach',
+            name: 'Fidelite UWINEZA',
+            role: 'Choir Coach',
+            img: '/public/images/Fidelite Elm.jpg',
+            desc: 'Provides vocal training, strengthens musical technique, and guides the choir during rehearsals. Her passion and direction help us grow in harmony, excellence, and purpose as we prepare to minister through music.'
+          }
+        ];
+      
+        const choirTrack = document.getElementById('choir-carousel-track');
+        choirMembers.concat(choirMembers).forEach(p => {
+          const card = document.createElement('div');
+          card.className = 'choir-card';
+          card.innerHTML = `
+            <div class="choir-card-inner">
+              <div class="choir-card-front">
+                <div class="choir-front-title">${p.title}</div>
+                <img src="${p.img}" alt="${p.name}">
+                <div class="choir-name">${p.name}</div>
+                <div class="choir-title">${p.role}</div>
+              </div>
+              <div class="choir-card-back">
+                <div class="choir-name">${p.name}</div>
+                <div class="choir-title">${p.role}</div>
+                <div class="choir-desc">${p.desc}</div>
+              </div>
+            </div>
+          `;
+          choirTrack.appendChild(card);
+        });
+      
+        let choirPosition = 0;
+        let choirIsPaused = false;
+        const choirSpeed = 0.8;
+      
+        function runChoirCarousel() {
+          if (!choirIsPaused) {
+            choirPosition -= choirSpeed;
+            if (Math.abs(choirPosition) >= choirTrack.scrollWidth / 2) {
+              choirPosition = 0;
+            }
+            choirTrack.style.transform = `translateX(${choirPosition}px)`;
+          }
+          requestAnimationFrame(runChoirCarousel);
+        }
+      
+        document.querySelector('.choir-carousel-container').addEventListener('mouseenter', () => {
+          choirIsPaused = true;
+        });
+      
+        document.querySelector('.choir-carousel-container').addEventListener('mouseleave', () => {
+          choirIsPaused = false;
+        });
+      
+        runChoirCarousel();
+      </script>
+      
+  </section>
+  <section class="credit-section">
+    <h2 class="credit-title">Developer Credit</h2>
+    <div class="credit-container">
+      <img src="/public//images/Honore Elm.jpg" alt="Developer Photo" class="developer-photo">
+      <div class="developer-info">
+        <p>This website was developed with passion and precision for Elmshaven Choir.</p>
+        <p><strong>Developer:</strong> Honore NIYIREMA</p>
+        <p><strong>Role:</strong> Web Designer & Developer</p>
+      </div>
+    </div>
+  </section>
+  
+  
     <!-- Same footer as index.html -->
     <footer>
         <div class="container">
