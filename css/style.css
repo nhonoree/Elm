@@ -157,6 +157,7 @@ h4 {
 }
 .nav-links a.active::after {
     width: 100% !important; /* Forces the underline to stay */
+    background: var(--primary-color) !important;
 }
 
 .hamburger {
