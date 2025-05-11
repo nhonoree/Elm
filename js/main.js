@@ -93,3 +93,9 @@ videoItems.forEach(video => {
         video.requestFullscreen();
     });
 });
+// Highlight current page link
+document.querySelectorAll('.nav-links a').forEach(link => {
+    if(link.href === window.location.href) {
+        link.classList.add('active');
+    }
+});
