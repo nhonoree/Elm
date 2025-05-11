@@ -93,9 +93,13 @@ videoItems.forEach(video => {
         video.requestFullscreen();
     });
 });
-// Highlight current page link
+// Update your current active link script to this:
 document.querySelectorAll('.nav-links a').forEach(link => {
-    if(link.href === window.location.href) {
-        link.classList.add('active');
-    }
+  // Normalize paths by removing trailing slashes and domain
+  const linkPath = new URL(link.href).pathname.replace(/\/$/, '');
+  const currentPath = window.location.pathname.replace(/\/$/, '');
+  
+  if(linkPath === currentPath) {
+    link.classList.add('active');
+  }
 });
