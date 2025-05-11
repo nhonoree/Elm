@@ -604,7 +604,7 @@ h4 {
       grid-template-columns: 1fr;
       grid-template-rows: auto;
       width: 100%;
-      padding: 10px 10px; /* optional: to add side spacing */
+      padding: 0 10px; /* optional: to add side spacing */
       box-sizing: border-box;
     }
   
