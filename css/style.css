@@ -87,7 +87,7 @@ h4 {
 /* Replace text logo with image logo */
 .logo {
     display: inline-block;
-    height: 40px; /* Adjust based on your image proportions */
+    height: 60px; /* Adjust based on your image proportions */
     width: auto; /* Maintain aspect ratio */
     position: relative;
     top: 3px; /* Fine-tune vertical alignment */
@@ -176,7 +176,7 @@ h4 {
 
 /* Hero Section */
 .hero {
-    height: 100vh;
+    height: 80vh;
     background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('../images/elm\ website\ hello\ image.jpg');
     background-size: cover;
     background-position: center;
@@ -257,7 +257,7 @@ h4 {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
     gap: 30px;
-    margin-top: 50px;
+    margin-top: 20px;
 }
 
 .card {
@@ -340,7 +340,7 @@ h4 {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    min-height: 100vh;
+    /* min-height: 100vh; */
     background: white;
     margin: 0;
     font-family: Arial, sans-serif;
@@ -372,13 +372,14 @@ h4 {
   /* Individual slide (card) */
   .slide {
     position: relative;
-    width: 220px;
+    width: 420px;
     height: 360px;
     flex: 0 0 auto;
     border-radius: 12px;
+      border: 5px solid #4a6ea59d;
     overflow: hidden;
     background: white;
-    border: 3px solid #d1e3f7;
+  
     box-shadow: 0 8px 20px rgba(0, 0, 0, 0.25);
     transition: transform 0.3s ease;
   }
@@ -453,26 +454,35 @@ h4 {
   }
   
   /* Responsive: Stack slides vertically or allow scroll on small screens */
-  @media (max-width: 768px) {
-    .slider {
-      flex-wrap: nowrap;
-      overflow-x: auto;
-      justify-content: flex-start;
-    }
-  
-    .slide {
-      flex: 0 0 auto;
-    }
-  
-    .slider-container {
-      padding: 10px;
-    }
-  
-    .play-status {
-      font-size: 1rem;
-      margin-top: 15px;
-    }
+@media (max-width: 768px) {
+  .slider {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
   }
+
+  .slide {
+    width: 80%;
+    height: 400px;
+    background: lightgray; /* just to visualize it */
+    margin-bottom: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+
+
+  .slider-container {
+    padding: 10px;
+  }
+
+  .play-status {
+    font-size: 1rem;
+    margin-top: 15px;
+  }
+}
+
   
 
 /* 
@@ -485,7 +495,7 @@ h4 {
     width: 100%;
     margin: 0 auto; 
     padding: 40px 40px;
-    height: 100vh;
+    /* height: 100vh; */
     box-sizing: border-box;
     display: flex;
     flex-direction: column;
@@ -503,7 +513,7 @@ h4 {
     padding-bottom: 10px;
   }
   
-  .calendar-container h1::after {
+  /* .calendar-container h1::after {
     content: '';
     display: block;
     width: 80px;
@@ -511,7 +521,7 @@ h4 {
     background-color: var(--primary-color);
     margin: 10px auto 0;
     border-radius: 2px;
-  }
+  } */
   
   .event-grid {
     display: grid;
@@ -676,7 +686,7 @@ h4 {
 }
 
 .conductor-image img {
-    width: 100%;
+    width: 80%;
     border-radius: 10px;
     border: 5px solid var(--light-color);
 }
@@ -718,7 +728,7 @@ h4 {
 
   
   .credit-section {
-    min-height: 100vh;
+    min-height: 80vh;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -750,7 +760,7 @@ h4 {
     border-left: 10px solid var(--primary-color);
     border-right: 10px solid var(--primary-color);
     border-radius: 16px;
-    padding: 50px 40px;
+    padding: 0px 40px;
     width: 100%;
     max-width: 600px;
     text-align: center;
