@@ -40,33 +40,85 @@
         </div>
     </section>
 
-    <!-- Gallery Section
-    <section class="section gallery-section">
-        <div class="container">
-            <div class="gallery-filter">
-                <button class="filter-btn active" data-filter="all">All</button>
-                <button class="filter-btn" data-filter="performances">Performances</button>
-                <button class="filter-btn" data-filter="rehearsals">Rehearsals</button>
-                <button class="filter-btn" data-filter="events">Events</button>
-            </div>
-            
-            <div class="gallery-container">
-                <a href="images/concert-1.jpg" class="gallery-item performances">
-                    <img src="images/concert-1-thumb.jpg" alt="Winter Concert">
-                    <div class="overlay">
-                        <h3>Winter Concert 2023</h3>
-                    </div>
-                </a>
-                <a href="images/rehearsal-1.jpg" class="gallery-item rehearsals">
-                    <img src="images/elm website hello image.jpg" alt="Choir Rehearsal">
-                    <div class="overlay">
-                        <h3>Weekly Rehearsal</h3>
-                    </div>
-                </a>
-                Add more items here -->
-            <!-- </div>
-        </div>
-    </section> -->
+<section class="gallery-section">
+  <div class="gallery-title-wrapper">
+    <h3 class="underline-title">Our Gallery</h3>
+  </div>
+
+  <div class="gallery-grid">
+    <div class="gallery-item">
+      <img src="images/Emmy Elm.jpg" alt="Event 1">
+    </div>
+    <div class="gallery-item">
+      <img src="images/elm website hello image.jpg" alt="Rehearsal">
+    </div>
+    <div class="gallery-item">
+      <img src="images/Emmy Elm.jpg" alt="Performance">
+    </div>
+    <div class="gallery-item">
+      <img src="images/Gratien Elm.jpg" alt="Singing">
+    </div>
+    <!-- Add more gallery-item blocks as needed -->
+  </div>
+  <!-- Lightbox Modal (Add below your gallery) -->
+<div id="lightbox" class="lightbox">
+  <span class="close-lightbox">&times;</span>
+  <img class="lightbox-img" src="" alt="Enlarged Image">
+  <span class="lightbox-prev">&#10094;</span>
+  <span class="lightbox-next">&#10095;</span>
+</div>
+
+</section>
+
+<script>
+  const images = document.querySelectorAll('.gallery-item img');
+  const lightbox = document.getElementById('lightbox');
+  const lightboxImg = document.querySelector('.lightbox-img');
+  const closeBtn = document.querySelector('.close-lightbox');
+  const prevBtn = document.querySelector('.lightbox-prev');
+  const nextBtn = document.querySelector('.lightbox-next');
+
+  let currentIndex = 0;
+
+  function showImage(index) {
+    const src = images[index].src;
+    lightboxImg.src = src;
+    lightbox.style.display = 'flex';
+    currentIndex = index;
+  }
+
+  images.forEach((img, index) => {
+    img.addEventListener('click', () => showImage(index));
+  });
+
+  closeBtn.addEventListener('click', () => {
+    lightbox.style.display = 'none';
+  });
+
+  nextBtn.addEventListener('click', () => {
+    currentIndex = (currentIndex + 1) % images.length;
+    showImage(currentIndex);
+  });
+
+  prevBtn.addEventListener('click', () => {
+    currentIndex = (currentIndex - 1 + images.length) % images.length;
+    showImage(currentIndex);
+  });
+
+  // Close on outside click
+  lightbox.addEventListener('click', (e) => {
+    if (e.target === lightbox) {
+      lightbox.style.display = 'none';
+    }
+  });
+
+  // Close on Esc key
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') {
+      lightbox.style.display = 'none';
+    }
+  });
+</script>
 
     <!-- Footer -->
     <footer>

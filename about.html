@@ -242,6 +242,11 @@ color: #444;
 font-size: 1.1em;
 margin-bottom: 60px; /* 👈 Add this line */
 }
+.choir-carousel-container {
+  cursor: grab;
+  user-select: none; /* prevent text/image highlighting */
+}
+
     
 @media (max-width: 768px) {
   .choir-carousel-container {
@@ -397,6 +402,34 @@ margin-bottom: 60px; /* 👈 Add this line */
         document.querySelector('.choir-carousel-container').addEventListener('mouseleave', () => {
           choirIsPaused = false;
         });
+        const container = document.querySelector('.choir-carousel-container');
+
+container.addEventListener('mousedown', (e) => {
+  isDragging = true;
+  choirIsPaused = true; // pause auto scroll while dragging
+  startX = e.pageX;
+  scrollStart = choirPosition;
+  container.style.cursor = 'grabbing';
+});
+
+container.addEventListener('mousemove', (e) => {
+  if (!isDragging) return;
+  const walk = e.pageX - startX;
+  choirPosition = scrollStart + walk;
+  choirTrack.style.transform = `translateX(${choirPosition}px)`;
+});
+
+container.addEventListener('mouseup', () => {
+  isDragging = false;
+  container.style.cursor = 'grab';
+  choirIsPaused = false; // resume auto scroll after drag
+});
+
+container.addEventListener('mouseleave', () => {
+  isDragging = false;
+  container.style.cursor = 'grab';
+});
+
       
         runChoirCarousel();
       </script>
