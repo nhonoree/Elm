@@ -36,7 +36,7 @@
     <section class="page-banner">
         <div class="container">
             <h1>Our Gallery</h1>
-            <p>coming soon</p>
+            <!-- <p>coming soon</p> -->
         </div>
     </section>
 
@@ -79,6 +79,39 @@
     <div class="gallery-item">
       <img src="gallery/image9.jpg" alt="Singing">
     </div>
+    <div class="gallery-item">
+      <img src="gallery/image10.jpg" alt="Singing">
+    </div>
+    <div class="gallery-item">
+      <img src="gallery/image11.jpg" alt="Singing">
+    </div>
+    <div class="gallery-item">
+      <img src="gallery/image12.jpg" alt="Singing">
+    </div>
+    <div class="gallery-item">
+      <img src="gallery/image13.jpg" alt="Singing">
+    </div>
+    <div class="gallery-item">
+      <img src="gallery/image14.jpg" alt="Singing">
+    </div>
+    <div class="gallery-item">
+      <img src="gallery/image15.jpg" alt="Singing">
+    </div>
+    <div class="gallery-item">
+      <img src="gallery/image16.jpg" alt="Singing">
+    </div>
+    <div class="gallery-item">
+      <img src="gallery/image17.jpg" alt="Singing">
+    </div>
+    <div class="gallery-item">
+      <img src="gallery/image18.jpg" alt="Singing">
+    </div>
+    <div class="gallery-item">
+      <img src="gallery/image19.jpg" alt="Singing">
+    </div>
+    <div class="gallery-item">
+      <img src="gallery/image20.jpg" alt="Singing">
+    </div>
     <!-- Add more gallery-item blocks as needed -->
   </div>
   <!-- Lightbox Modal (Add below your gallery) -->
@@ -92,54 +125,117 @@
 </section>
 
 <script>
-  const images = document.querySelectorAll('.gallery-item img');
-  const lightbox = document.getElementById('lightbox');
-  const lightboxImg = document.querySelector('.lightbox-img');
-  const closeBtn = document.querySelector('.close-lightbox');
-  const prevBtn = document.querySelector('.lightbox-prev');
-  const nextBtn = document.querySelector('.lightbox-next');
+const images = document.querySelectorAll('.gallery-item img');
+const lightbox = document.getElementById('lightbox');
+const lightboxImg = document.querySelector('.lightbox-img');
+const closeBtn = document.querySelector('.close-lightbox');
+const prevBtn = document.querySelector('.lightbox-prev');
+const nextBtn = document.querySelector('.lightbox-next');
 
-  let currentIndex = 0;
+let currentIndex = 0;
+let isZoomed = false;
+let isDragging = false;
+let startX, startY;
+let currentX = 0, currentY = 0;
 
-  function showImage(index) {
+function updateTransform() {
+    if (isZoomed) {
+        lightboxImg.style.transform = `scale(2) translate(${currentX}px, ${currentY}px)`;
+    } else {
+        lightboxImg.style.transform = 'scale(1) translate(0, 0)';
+        currentX = 0;
+        currentY = 0;
+    }
+}
+
+function showImage(index) {
     const src = images[index].src;
     lightboxImg.src = src;
     lightbox.style.display = 'flex';
     currentIndex = index;
-  }
+    isZoomed = false;
+    updateTransform();
+}
 
-  images.forEach((img, index) => {
+// Open image
+images.forEach((img, index) => {
     img.addEventListener('click', () => showImage(index));
-  });
+});
 
-  closeBtn.addEventListener('click', () => {
-    lightbox.style.display = 'none';
-  });
+// Close lightbox
+closeBtn.addEventListener('click', () => lightbox.style.display = 'none');
+lightbox.addEventListener('click', (e) => {
+    if (e.target === lightbox) lightbox.style.display = 'none';
+});
+document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') lightbox.style.display = 'none';
+});
 
-  nextBtn.addEventListener('click', () => {
+// Navigation
+nextBtn.addEventListener('click', () => {
     currentIndex = (currentIndex + 1) % images.length;
     showImage(currentIndex);
-  });
+});
 
-  prevBtn.addEventListener('click', () => {
+prevBtn.addEventListener('click', () => {
     currentIndex = (currentIndex - 1 + images.length) % images.length;
     showImage(currentIndex);
-  });
+});
 
-  // Close on outside click
-  lightbox.addEventListener('click', (e) => {
-    if (e.target === lightbox) {
-      lightbox.style.display = 'none';
-    }
-  });
+// Toggle zoom
+lightboxImg.addEventListener('click', () => {
+    isZoomed = !isZoomed;
+    lightboxImg.style.transition = 'transform 0.3s ease';
+    updateTransform();
+});
 
-  // Close on Esc key
-  document.addEventListener('keydown', (e) => {
-    if (e.key === 'Escape') {
-      lightbox.style.display = 'none';
-    }
-  });
+// Drag with mouse
+lightboxImg.addEventListener('mousedown', (e) => {
+    if (!isZoomed) return;
+    isDragging = true;
+    startX = e.clientX - currentX;
+    startY = e.clientY - currentY;
+    lightboxImg.style.transition = 'none';
+});
+
+document.addEventListener('mousemove', (e) => {
+    if (!isDragging) return;
+    currentX = e.clientX - startX;
+    currentY = e.clientY - startY;
+    updateTransform();
+});
+
+document.addEventListener('mouseup', () => {
+    if (!isDragging) return;
+    isDragging = false;
+    lightboxImg.style.transition = 'transform 0.3s ease';
+});
+
+// Drag with touch (mobile)
+lightboxImg.addEventListener('touchstart', (e) => {
+    if (!isZoomed) return;
+    isDragging = true;
+    startX = e.touches[0].clientX - currentX;
+    startY = e.touches[0].clientY - currentY;
+    lightboxImg.style.transition = 'none';
+});
+
+lightboxImg.addEventListener('touchmove', (e) => {
+    if (!isDragging) return;
+    currentX = e.touches[0].clientX - startX;
+    currentY = e.touches[0].clientY - startY;
+    updateTransform();
+});
+
+lightboxImg.addEventListener('touchend', () => {
+    if (!isDragging) return;
+    isDragging = false;
+    lightboxImg.style.transition = 'transform 0.3s ease';
+});
+
+
 </script>
+
 
     <!-- Footer -->
     <footer>
@@ -209,6 +305,7 @@
             }
         });
     }
+    
     </script>
 
 
