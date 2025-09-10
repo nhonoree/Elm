@@ -1,0 +1,36 @@
+<!-- landing.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="refresh" content="2; url=home.html"> <!-- Redirects after 2 seconds -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Elmshaven Choir</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html, body {
+      height: 100%;
+      width: 100%;
+      background-color: #000;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    img {
+      max-width: 100%;
+      max-height: 100%;
+      width: auto;
+      height: auto;
+    }
+  </style>
+</head>
+<body>
+  <img src="images/elm logo.png" alt="Welcome Image">
+</body>
+</html>
